@@ -5,9 +5,15 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 
 injectGlobal`
+  html, body {
+    overflow: hidden;
+  }
+
   body {
-    background-color: red;
     margin: 0;
+    background-color: black;
+    /* Avoid scrolling on iPad */
+    position: fixed;
   }
 
   @import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap');

@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled/macro'
 
+import names from './names'
+
 const Backdrop = styled.div`
   background-color: black;
   width: 100vw;
@@ -12,43 +14,54 @@ const Backdrop = styled.div`
     'name   name'
     'name   name'
     'dept   dept';
+  grid-template-rows: 30vh 1fr 1fr 30vh;
   justify-items: center;
   align-items: center;
 `
 
-const fontProportion = 2.43
-
 const Text = styled.p`
   font-weight: normal;
-  font-size: ${({ vw, children }) => (vw * fontProportion) / children.length}vh;
+  font-size: 18vh;
   color: white;
   font-family: 'Share Tech Mono', monospace;
   text-transform: uppercase;
 
   margin: 0;
   grid-area: ${({ area }) => area};
+  text-align: center;
 `
 
 const Subtext = styled(Text)`
-  font-size: 8vh;
+  font-size: 10vh;
 `
 
-function randomNumber() {
-  return [...Array(10)].map(() => parseInt(Math.random() * 10)).join('')
+function randomNumber(limit) {
+  return parseInt(Math.random() * limit)
+}
+
+function randomSerial() {
+  return [...Array(10)].map(() => randomNumber(10)).join('')
+}
+
+function createName() {
+  const first = names.first[randomNumber(names.first.length)]
+  const last = names.last[randomNumber(names.last.length)]
+
+  return `${first} ${last}`
 }
 
 function App() {
+  const [name, setName] = React.useState(createName())
+
   return (
-    <Backdrop className="App">
-      <Subtext>{randomNumber()}</Subtext>
+    <Backdrop className="App" onClick={() => setName(createName())}>
+      <Subtext>{randomSerial()}</Subtext>
       <Subtext>{new Date().toLocaleDateString()}</Subtext>
 
-      <Text area="name" vw={90}>
-        Björn Dagerman
+      <Text area="name" vw={100}>
+        {name}
       </Text>
-      <Text area="dept" vw={60}>
-        Klarna Police Dept.
-      </Text>
+      <Subtext area="dept">Police Dept.</Subtext>
     </Backdrop>
   )
 }
