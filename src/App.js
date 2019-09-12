@@ -3,6 +3,8 @@ import styled from '@emotion/styled/macro'
 import { useDrag } from 'react-use-gesture'
 
 import names from './names'
+import near from './near'
+import useStack from './useStack'
 
 const Backdrop = styled.div`
   background-color: black;
@@ -52,15 +54,16 @@ function createName() {
 }
 
 function App() {
-  const [name, setName] = React.useState(createName())
+  const { current: name, push, pop } = useStack([createName()])
+
   const bind = useDrag(({ direction: [dx, dy], distance, down }) => {
-    if (!down && dx === -1 && dy === 0 && distance >= 300) {
-      setName('Yurick Hauschild')
+    if (!down && near(dx, 1) && near(dy, 0) && distance >= 100) {
+      pop()
     }
   })
 
   return (
-    <Backdrop {...bind()} className="App" onClick={() => setName(createName())}>
+    <Backdrop {...bind()} className="App" onClick={() => push(createName())}>
       <Subtext>{randomSerial()}</Subtext>
       <Subtext>{new Date().toLocaleDateString()}</Subtext>
 
