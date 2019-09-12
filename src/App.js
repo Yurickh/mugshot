@@ -6,8 +6,14 @@ import names from './names'
 import near from './near'
 import useStack from './useStack'
 
+const colors = {
+  background: '#171717',
+  text: '#FFFFFF',
+  textNeutral: '#EAE7E4',
+}
+
 const Backdrop = styled.div`
-  background-color: black;
+  background-color: ${colors.background};
   width: 100vw;
   height: 100vh;
 
@@ -25,7 +31,7 @@ const Backdrop = styled.div`
 const Text = styled.p`
   font-weight: normal;
   font-size: 18vh;
-  color: white;
+  color: ${colors.text};
   font-family: 'Share Tech Mono', monospace;
   text-transform: uppercase;
 
@@ -36,6 +42,7 @@ const Text = styled.p`
 
 const Subtext = styled(Text)`
   font-size: 10vh;
+  color: ${colors.textNeutral};
 `
 
 function randomNumber(limit) {
