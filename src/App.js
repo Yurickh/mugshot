@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled/macro'
+import { useDrag } from 'react-use-gesture'
 
 import names from './names'
 
@@ -52,9 +53,14 @@ function createName() {
 
 function App() {
   const [name, setName] = React.useState(createName())
+  const bind = useDrag(({ direction: [dx, dy], distance, down }) => {
+    if (!down && dx === -1 && dy === 0 && distance >= 300) {
+      setName('Yurick Hauschild')
+    }
+  })
 
   return (
-    <Backdrop className="App" onClick={() => setName(createName())}>
+    <Backdrop {...bind()} className="App" onClick={() => setName(createName())}>
       <Subtext>{randomSerial()}</Subtext>
       <Subtext>{new Date().toLocaleDateString()}</Subtext>
 
