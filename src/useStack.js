@@ -1,6 +1,10 @@
 import React from 'react'
 
 function reducer(state, action) {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(action)
+  }
+
   switch (action.type) {
     case 'push':
       return [action.value, ...state]
