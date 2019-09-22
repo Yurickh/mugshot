@@ -58,13 +58,19 @@ function App() {
   const { current: name, push, pop } = useStack([createName()])
 
   const bind = useDrag(({ direction: [dx, dy], distance, down }) => {
+    // onClick
+    if (!down && near(dx, 0) && near(dy, 0) && near(distance, 0)) {
+      push(createName())
+    }
+
+    // onDragRight
     if (!down && near(dx, 1) && near(dy, 0) && distance >= 100) {
       pop()
     }
   })
 
   return (
-    <Backdrop {...bind()} className="App" onClick={() => push(createName())}>
+    <Backdrop {...bind()} className="App">
       <Subtext>{randomNumberWithLength(10)}</Subtext>
       <Subtext>{new Date().toLocaleDateString()}</Subtext>
 
