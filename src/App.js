@@ -5,6 +5,7 @@ import { useDrag } from 'react-use-gesture'
 import names from './names'
 import near from './near'
 import useStack from './useStack'
+import { sample, randomNumberWithLength } from './random'
 
 const colors = {
   background: '#171717',
@@ -45,17 +46,9 @@ const Subtext = styled(Text)`
   color: ${colors.textNeutral};
 `
 
-function randomNumber(limit) {
-  return parseInt(Math.random() * limit)
-}
-
-function randomSerial() {
-  return [...Array(10)].map(() => randomNumber(10)).join('')
-}
-
 function createName() {
-  const first = names.first[randomNumber(names.first.length)]
-  const last = names.last[randomNumber(names.last.length)]
+  const first = sample(names.first)
+  const last = sample(names.last)
 
   return `${first} ${last}`
 }
@@ -71,7 +64,7 @@ function App() {
 
   return (
     <Backdrop {...bind()} className="App" onClick={() => push(createName())}>
-      <Subtext>{randomSerial()}</Subtext>
+      <Subtext>{randomNumberWithLength(10)}</Subtext>
       <Subtext>{new Date().toLocaleDateString()}</Subtext>
 
       <Text area="name" vw={100}>
