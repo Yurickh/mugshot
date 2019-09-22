@@ -54,7 +54,7 @@ function createName() {
   return `${first} ${last}`
 }
 
-function App() {
+export default function Mugshot() {
   const { current: name, push, pop } = useStack([createName()])
 
   const bind = useDrag(({ direction: [dx, dy], distance, down }) => {
@@ -70,7 +70,7 @@ function App() {
   })
 
   return (
-    <Backdrop {...bind()} className="App">
+    <Backdrop {...bind()}>
       <Subtext>{randomNumberWithLength(10)}</Subtext>
       <Subtext>{new Date().toLocaleDateString()}</Subtext>
 
@@ -81,5 +81,3 @@ function App() {
     </Backdrop>
   )
 }
-
-export default App

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { injectGlobal } from 'emotion/macro'
-import App from './App'
+import Mugshot from './Mugshot'
 import * as serviceWorker from './serviceWorker'
 
 injectGlobal`
@@ -19,6 +19,6 @@ injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap');
 `
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<Mugshot />, document.getElementById('root'))
 
 serviceWorker.register()
