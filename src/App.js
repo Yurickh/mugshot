@@ -39,6 +39,7 @@ const Text = styled.p`
   margin: 0;
   grid-area: ${({ area }) => area};
   text-align: center;
+  user-select: none;
 `
 
 const Subtext = styled(Text)`
