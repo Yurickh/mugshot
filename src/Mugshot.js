@@ -5,7 +5,7 @@ import { useDrag } from 'react-use-gesture'
 import names from './names'
 import near from './near'
 import useStack from './useStack'
-import { sample, randomNumberWithLength } from './random'
+import { sample, stringWithNumberOfLength } from './random'
 
 const colors = {
   background: '#171717',
@@ -71,7 +71,7 @@ export default function Mugshot() {
 
   return (
     <Backdrop {...bind()}>
-      <Subtext>{randomNumberWithLength(10)}</Subtext>
+      <Subtext>{stringWithNumberOfLength(10)}</Subtext>
       <Subtext>{new Date().toLocaleDateString()}</Subtext>
 
       <Text area="name" vw={100}>
