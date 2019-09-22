@@ -25,4 +25,6 @@ This is the command that netlify will run every time `master` is updated.
 
 ### `yarn test`
 
-Help me add some tests to this project :)~
+This will run the tests in the project.
+
+I aim at adding some integration tests to it, but didn't have time to yet, feel free to contribute :)~
